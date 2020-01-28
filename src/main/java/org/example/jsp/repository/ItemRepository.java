@@ -4,5 +4,5 @@ import org.example.jsp.repository.dto.ItemDB;
 
 public interface ItemRepository {
 
-    ItemDB get(Long id);
+    ItemDB read(Long id);
 }

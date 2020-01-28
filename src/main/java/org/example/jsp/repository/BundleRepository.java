@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BundleRepository {
 
-    BundleDB get(Long id);
+    BundleDB read(Long id);
 
-    List<BundleDB> getByName(String name);
+    List<BundleDB> readByName(String name);
 }

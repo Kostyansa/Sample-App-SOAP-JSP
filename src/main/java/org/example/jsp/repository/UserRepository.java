@@ -4,7 +4,7 @@ import org.example.jsp.repository.dto.CustomerDB;
 
 public interface UserRepository {
 
-    CustomerDB get(Long id);
+    CustomerDB read(Long id);
 
     void update(CustomerDB customerDB);
 

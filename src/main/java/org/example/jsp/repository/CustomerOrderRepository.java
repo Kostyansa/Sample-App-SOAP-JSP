@@ -11,7 +11,9 @@ public interface CustomerOrderRepository {
 
     void update(CustomerOrderDB customerOrderDB);
 
-    CustomerOrderDB get(Long id);
+    CustomerOrderDB read(Long id);
 
-    List<CustomerOrderDB> getByCustomer(CustomerDB customerDB);
+    List<CustomerOrderDB> readByCustomer(CustomerDB customerDB);
+
+    void delete(CustomerOrderDB customerOrderDB);
 }

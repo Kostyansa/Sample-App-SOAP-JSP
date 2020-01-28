@@ -5,9 +5,9 @@ import org.example.jsp.repository.dto.PaymentDB;
 
 public interface PaymentRepository {
 
-    PaymentDB get(Long id);
+    PaymentDB read(Long id);
 
-    PaymentDB getByCustomerOrderId(Long customerOrderId);
+    PaymentDB readByCustomerOrderId(Long customerOrderId);
 
     void complete();
 }
