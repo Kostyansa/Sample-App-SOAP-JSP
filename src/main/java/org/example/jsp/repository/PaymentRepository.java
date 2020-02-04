@@ -5,9 +5,13 @@ import org.example.jsp.repository.dto.PaymentDB;
 
 public interface PaymentRepository {
 
+    PaymentDB create(PaymentDB paymentDB);
+
     PaymentDB read(Long id);
 
     PaymentDB readByCustomerOrderId(Long customerOrderId);
 
-    void complete();
+    PaymentDB delete(PaymentDB paymentDB);
+
+    boolean complete();
 }
