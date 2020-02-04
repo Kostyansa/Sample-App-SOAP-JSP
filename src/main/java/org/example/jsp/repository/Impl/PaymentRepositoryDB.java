@@ -2,7 +2,9 @@ package org.example.jsp.repository.Impl;
 
 import org.example.jsp.repository.PaymentRepository;
 import org.example.jsp.repository.dto.PaymentDB;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PaymentRepositoryDB implements PaymentRepository {
     @Override
     public PaymentDB create(PaymentDB paymentDB) {

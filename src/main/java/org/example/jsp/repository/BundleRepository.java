@@ -10,7 +10,7 @@ public interface BundleRepository {
 
     BundleDB read(Long id);
 
-    List<BundleDB> readByName(String name);
+    BundleDB readByName(String name);
 
     BundleDB update(BundleDB bundleDB);
 

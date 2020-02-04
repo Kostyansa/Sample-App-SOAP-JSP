@@ -2,7 +2,7 @@ package org.example.jsp.repository;
 
 import org.example.jsp.repository.dto.CustomerDB;
 
-public interface UserRepository {
+public interface CustomerRepository {
 
     CustomerDB create(CustomerDB customerDB);
 
