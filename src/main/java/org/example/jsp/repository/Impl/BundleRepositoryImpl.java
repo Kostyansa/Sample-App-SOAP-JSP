@@ -10,12 +10,27 @@ import java.util.List;
 public class BundleRepositoryImpl implements BundleRepository {
 
     @Override
+    public BundleDB create(BundleDB bundleDB) {
+        return null;
+    }
+
+    @Override
     public BundleDB read(Long id) {
         return null;
     }
 
     @Override
     public List<BundleDB> readByName(String name) {
+        return null;
+    }
+
+    @Override
+    public BundleDB update(BundleDB bundleDB) {
+        return null;
+    }
+
+    @Override
+    public BundleDB delete(BundleDB bundleDB) {
         return null;
     }
 }
