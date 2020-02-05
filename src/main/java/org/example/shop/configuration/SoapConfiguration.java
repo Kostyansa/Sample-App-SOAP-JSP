@@ -19,10 +19,10 @@ public class SoapConfiguration extends WsConfigurerAdapter {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean(servlet, "/service/*");
+        return new ServletRegistrationBean(servlet, "/*");
     }
 
-    @Bean(name = "studentDetailsWsdl")
+    @Bean(name = "ItemsWsdl")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema itemsSchema)
     {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
@@ -34,7 +34,7 @@ public class SoapConfiguration extends WsConfigurerAdapter {
     }
 
     @Bean
-    public XsdSchema itemsChema()
+    public XsdSchema itemsSchema()
     {
         return new SimpleXsdSchema(new ClassPathResource("items.xsd"));
     }
