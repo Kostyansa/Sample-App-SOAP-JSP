@@ -1,6 +1,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://soap.shop.example.org/items"
-           targetNamespace="http://soap.shop.example.org/items"
+           xmlns:tns="http://resource.shop.example.org/items"
+           targetNamespace="http://resource.shop.example.org/items"
            elementFormDefault="qualified">
     <xs:complexType name="Item">
         <xs:sequence>
