@@ -1,0 +1,27 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://soap.shop.example.org/items"
+           targetNamespace="http://soap.shop.example.org/items"
+           elementFormDefault="qualified">
+    <xs:complexType name="Item">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="price" type="xs:long"/>
+            <xs:element name="amount" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ItemRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ItemResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="item" type="tns:Item"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
