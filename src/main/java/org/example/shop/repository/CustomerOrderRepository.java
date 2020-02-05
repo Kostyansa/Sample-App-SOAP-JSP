@@ -1,19 +1,21 @@
 package org.example.shop.repository;
 
+import org.example.shop.repository.dto.BundleDB;
 import org.example.shop.repository.dto.CustomerDB;
 import org.example.shop.repository.dto.CustomerOrderDB;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CustomerOrderRepository {
 
-    void create(CustomerOrderDB customerOrderDB);
+    Optional<CustomerOrderDB> create(CustomerOrderDB customerOrderDB);
 
-    void update(CustomerOrderDB customerOrderDB);
+    Optional<CustomerOrderDB> update(CustomerOrderDB customerOrderDB);
 
-    CustomerOrderDB read(Long id);
+    Optional<CustomerOrderDB> read(Long id);
 
     List<CustomerOrderDB> readByCustomer(CustomerDB customerDB);
 
-    void delete(CustomerOrderDB customerOrderDB);
+    Optional<CustomerOrderDB> delete(CustomerOrderDB customerOrderDB);
 }

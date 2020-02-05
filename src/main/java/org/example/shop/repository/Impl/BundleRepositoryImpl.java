@@ -8,38 +8,41 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class BundleRepositoryImpl implements BundleRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public void create(BundleDB bundleDB) {
 
+    @Override
+    public Optional<BundleDB> create(BundleDB bundleDB) {
+        return Optional.empty();
     }
 
-    @Override
     @Cacheable("bundles")
-    public BundleDB read(Long id) {
-        return null;
+    @Override
+    public Optional<BundleDB> read(Long id) {
+        return Optional.empty();
     }
 
-    @Override
     @Cacheable("bundles")
-    public BundleDB readByName(String name) {
-        return null;
+    @Override
+    public Optional<BundleDB> readByName(String name) {
+        return Optional.empty();
     }
 
-    @Override
     @CacheEvict("bundles")
-    public void update(BundleDB bundleDB) {
-
+    @Override
+    public Optional<BundleDB> update(BundleDB bundleDB) {
+        return Optional.empty();
     }
 
-    @Override
     @CacheEvict("bundles")
-    public void delete(BundleDB bundleDB) {
-
+    @Override
+    public Optional<BundleDB> delete(BundleDB bundleDB) {
+        return Optional.empty();
     }
 }

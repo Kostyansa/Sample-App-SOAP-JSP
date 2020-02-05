@@ -1,12 +1,15 @@
 package org.example.shop.repository;
 
 import org.example.shop.repository.dto.CustomerDB;
+import org.example.shop.repository.dto.CustomerOrderDB;
+
+import java.util.Optional;
 
 public interface CustomerRepository {
 
-    void create(CustomerDB customerDB);
+    Optional<CustomerDB> create(CustomerDB customerDB);
 
-    CustomerDB read(Long id);
+    Optional<CustomerDB> read(Long id);
 
-    void update(CustomerDB customerDB);
+    Optional<CustomerDB> update(CustomerDB customerDB);
 }

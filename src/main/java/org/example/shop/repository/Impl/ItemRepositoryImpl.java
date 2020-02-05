@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ItemRepositoryImpl implements ItemRepository {
@@ -16,32 +17,33 @@ public class ItemRepositoryImpl implements ItemRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public void create(ItemDB itemDB) {
 
+    @Override
+    public Optional<ItemDB> create(ItemDB itemDB) {
+        return Optional.empty();
     }
 
-    @Override
     @Cacheable("items")
-    public ItemDB read(Long id) {
-        return null;
+    @Override
+    public Optional<ItemDB> read(Long id) {
+        return Optional.empty();
     }
 
-    @Override
     @Cacheable("items")
+    @Override
     public List<ItemDB> readByBundleId(Long id) {
         return null;
     }
 
+    @CacheEvict("customers")
     @Override
-    @CacheEvict("items")
-    public void update(ItemDB itemDB) {
-
+    public Optional<ItemDB> update(ItemDB itemDB) {
+        return Optional.empty();
     }
 
+    @CacheEvict("customers")
     @Override
-    @CacheEvict("items")
-    public void delete(ItemDB itemDB) {
-
+    public Optional<ItemDB> delete(ItemDB itemDB) {
+        return Optional.empty();
     }
 }

@@ -2,15 +2,17 @@ package org.example.shop.repository;
 
 import org.example.shop.repository.dto.BundleDB;
 
+import java.util.Optional;
+
 public interface BundleRepository {
 
-    void create(BundleDB bundleDB);
+    Optional<BundleDB> create(BundleDB bundleDB);
 
-    BundleDB read(Long id);
+    Optional<BundleDB> read(Long id);
 
-    BundleDB readByName(String name);
+    Optional<BundleDB> readByName(String name);
 
-    void update(BundleDB bundleDB);
+    Optional<BundleDB> update(BundleDB bundleDB);
 
-    void delete(BundleDB bundleDB);
+    Optional<BundleDB> delete(BundleDB bundleDB);
 }

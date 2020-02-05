@@ -6,30 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class PaymentRepositoryImpl implements PaymentRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public void create(PaymentDB paymentDB) {
 
+    @Override
+    public Optional<PaymentDB> create(PaymentDB paymentDB) {
+        return Optional.empty();
     }
 
     @Override
-    public PaymentDB read(Long id) {
-        return null;
+    public Optional<PaymentDB> read(Long id) {
+        return Optional.empty();
     }
 
     @Override
-    public PaymentDB readByCustomerOrderId(Long customerOrderId) {
-        return null;
+    public Optional<PaymentDB> readByCustomerOrderId(Long customerOrderId) {
+        return Optional.empty();
     }
 
     @Override
-    public void delete(PaymentDB paymentDB) {
-
+    public Optional<PaymentDB> delete(PaymentDB paymentDB) {
+        return Optional.empty();
     }
 
     @Override

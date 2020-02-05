@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class CustomerOrderRepositoryImpl implements CustomerOrderRepository {
@@ -17,32 +18,29 @@ public class CustomerOrderRepositoryImpl implements CustomerOrderRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public void create(CustomerOrderDB customerOrderDB) {
 
+    @Override
+    public Optional<CustomerOrderDB> create(CustomerOrderDB customerOrderDB) {
+        return Optional.empty();
     }
 
     @Override
-    @CacheEvict("customers")
-    public void update(CustomerOrderDB customerOrderDB) {
-
+    public Optional<CustomerOrderDB> update(CustomerOrderDB customerOrderDB) {
+        return Optional.empty();
     }
 
     @Override
-    @Cacheable("customers")
-    public CustomerOrderDB read(Long id) {
-        return null;
+    public Optional<CustomerOrderDB> read(Long id) {
+        return Optional.empty();
     }
 
     @Override
-    @Cacheable("customers")
     public List<CustomerOrderDB> readByCustomer(CustomerDB customerDB) {
         return null;
     }
 
     @Override
-    @CacheEvict("customers")
-    public void delete(CustomerOrderDB customerOrderDB) {
-
+    public Optional<CustomerOrderDB> delete(CustomerOrderDB customerOrderDB) {
+        return Optional.empty();
     }
 }

@@ -3,16 +3,17 @@ package org.example.shop.repository;
 import org.example.shop.repository.dto.ItemDB;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ItemRepository {
 
-    void create(ItemDB itemDB);
+    Optional<ItemDB> create(ItemDB itemDB);
 
-    ItemDB read(Long id);
+    Optional<ItemDB> read(Long id);
 
     List<ItemDB> readByBundleId(Long id);
 
-    void update(ItemDB itemDB);
+    Optional<ItemDB> update(ItemDB itemDB);
 
-    void delete(ItemDB itemDB);
+    Optional<ItemDB> delete(ItemDB itemDB);
 }
