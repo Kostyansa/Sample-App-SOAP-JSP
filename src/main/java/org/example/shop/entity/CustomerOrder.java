@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 public class CustomerOrder {
 
-    @NotNull
     private Long id;
 
     private Customer customer;

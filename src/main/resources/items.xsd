@@ -1,12 +1,12 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://resource.shop.example.org/items"
-           targetNamespace="http://resource.shop.example.org/items"
+           xmlns:tns="http://example.org/shop/resource/items"
+           targetNamespace="http://example.org/shop/resource/items"
            elementFormDefault="qualified">
     <xs:complexType name="Item">
         <xs:sequence>
             <xs:element name="name" type="xs:string"/>
             <xs:element name="description" type="xs:string"/>
-            <xs:element name="price" type="xs:long"/>
+            <xs:element name="price" type="xs:double"/>
             <xs:element name="amount" type="xs:long"/>
         </xs:sequence>
     </xs:complexType>

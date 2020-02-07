@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class Payment {
 
-    @NotNull
     private Long id;
 
     private Long idOrder;

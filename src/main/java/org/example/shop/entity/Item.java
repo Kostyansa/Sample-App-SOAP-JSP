@@ -11,11 +11,10 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class Item {
 
-    @NotNull
     private Long id;
 
     private String name;
     private String description;
-    private Long price;
+    private Double price;
     private Long amount;
 }

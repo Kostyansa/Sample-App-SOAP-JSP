@@ -12,5 +12,7 @@ public interface CustomerService {
 
     Customer find(Long id);
 
+    Customer update(Customer customer);
+
     Customer delete(Long id);
 }

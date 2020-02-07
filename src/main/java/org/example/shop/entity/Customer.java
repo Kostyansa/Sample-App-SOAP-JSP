@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class Customer {
 
-    @NotNull
     private Long id;
 
     @NotNull

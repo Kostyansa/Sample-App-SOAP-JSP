@@ -34,8 +34,8 @@ public class CustomerController {
 
     @PutMapping("/customers/{id}")
     public Customer update(@RequestBody Customer customer, @PathVariable Long id){
-        //TODO
-        return null;
+        customer.setId(id);
+        return customerService.update(customer);
     }
 
     @DeleteMapping("/customers/{id}")

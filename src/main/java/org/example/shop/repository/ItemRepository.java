@@ -2,18 +2,21 @@ package org.example.shop.repository;
 
 import org.example.shop.repository.dto.ItemDB;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 public interface ItemRepository {
 
-    Optional<ItemDB> create(ItemDB itemDB);
+    int create(ItemDB itemDB);
 
     Optional<ItemDB> read(Long id);
 
     List<ItemDB> readByBundleId(Long id);
 
-    Optional<ItemDB> update(ItemDB itemDB);
+    int update(ItemDB itemDB);
 
-    Optional<ItemDB> delete(ItemDB itemDB);
+    int updateAvailability(ItemDB itemDB);
+
+    int delete(ItemDB itemDB);
 }
