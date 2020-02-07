@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
