@@ -13,6 +13,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Endpoint
 public class ItemEndpoint {
@@ -36,7 +37,7 @@ public class ItemEndpoint {
         ItemResponse response = new ItemResponse();
         response.setItem(
                 itemResourceMapper.toResource(
-                        itemService.find(request.getId())
+                        itemService.find(request.getId()).get(3, TimeUnit.SECONDS)
                         )
                 );
         return response;

@@ -14,5 +14,9 @@ public class Bundle {
 
     private Long id;
 
+    private String name;
+    private String description;
+    private Long price;
+
     private List<Item> items;
 }
