@@ -17,7 +17,11 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
     private CustomerOrderRepository customerOrderRepository;
 
     @Autowired
-    public CustomerOrderServiceImpl(ItemService itemService, BundleService bundleService, CustomerService customerService, CustomerOrderRepository customerOrderRepository) {
+    public CustomerOrderServiceImpl(ItemService itemService,
+                                    BundleService bundleService,
+                                    CustomerService customerService,
+                                    CustomerOrderRepository
+                                                customerOrderRepository) {
         this.itemService = itemService;
         this.bundleService = bundleService;
         this.customerService = customerService;
