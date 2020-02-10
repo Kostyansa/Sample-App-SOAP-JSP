@@ -13,5 +13,5 @@ public class BundleDB {
 
     private String name;
     private String description;
-    private Long price;
+    private Double price;
 }

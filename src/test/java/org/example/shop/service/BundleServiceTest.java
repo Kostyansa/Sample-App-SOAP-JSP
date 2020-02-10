@@ -33,9 +33,15 @@ public class BundleServiceTest {
         Assertions.assertTimeout(
                 Duration.ofMillis(1000),
                 () -> {
-                    BundleDB bundleDB = bundleRepository.read(3L).get();
-                    List<Item> itemsList = itemService.findByBundleId(3L).get();
-                    Bundle bundle = bundleMapper.toBundle(bundleDB, itemsList);
+                    try {
+                        BundleDB bundleDB = bundleRepository.read(3L).get();
+                        List<Item> itemsList = itemService.findByBundleId(3L).get();
+                        Bundle bundle = bundleMapper.toBundle(bundleDB, itemsList);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                        Assertions.fail();
+                    }
                 }
         );
     }

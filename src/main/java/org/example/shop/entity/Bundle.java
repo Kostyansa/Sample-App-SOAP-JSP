@@ -16,7 +16,7 @@ public class Bundle {
 
     private String name;
     private String description;
-    private Long price;
+    private Double price;
 
     private List<Item> items;
 }

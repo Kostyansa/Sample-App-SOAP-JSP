@@ -13,7 +13,9 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 @Endpoint
 public class ItemEndpoint {
@@ -35,11 +37,18 @@ public class ItemEndpoint {
     public ItemResponse getStudent(@RequestPayload ItemRequest request) {
 
         ItemResponse response = new ItemResponse();
-        response.setItem(
-                itemResourceMapper.toResource(
-                        itemService.find(request.getId()).get(3, TimeUnit.SECONDS)
-                        )
-                );
+        try {
+            response.setItem(
+                    itemResourceMapper.toResource(
+                            itemService.find(request.getId()).get(3, TimeUnit.SECONDS)
+                            )
+                    );
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
+        } catch (ExecutionException | TimeoutException e) {
+            throw new ItemNotFoundException();
+        }
         return response;
     }
 }

@@ -59,7 +59,7 @@ public class ItemRepositoryImpl implements ItemRepository {
     @Override
     public List<ItemDB> readByBundleId(Long idBundle) {
         return jdbcTemplate.query(
-                "select It.id, price, name, description from shop.Item as It " +
+                "select It.id, price, name, description, amount from shop.Item as It " +
                         "left join shop.ItemAvailability as ItAv on It.id = ItAv.id " +
                         "left join shop.Bundle_Has_Item as Bun on It.id = Bun.id_Item " +
                         "where Bun.id_Bundle = ?",

@@ -6,13 +6,13 @@ import java.util.Optional;
 
 public interface BundleRepository {
 
-    Optional<BundleDB> create(BundleDB bundleDB);
+    int create(BundleDB bundleDB);
 
     Optional<BundleDB> read(Long id);
 
     Optional<BundleDB> readByName(String name);
 
-    Optional<BundleDB> update(BundleDB bundleDB);
+    int update(BundleDB bundleDB);
 
-    Optional<BundleDB> delete(BundleDB bundleDB);
+    int delete(BundleDB bundleDB);
 }
