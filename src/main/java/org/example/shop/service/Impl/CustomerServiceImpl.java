@@ -1,5 +1,6 @@
 package org.example.shop.service.Impl;
 
+import lombok.RequiredArgsConstructor;
 import org.example.shop.entity.Customer;
 import org.example.shop.exception.CustomerNotFoundException;
 import org.example.shop.repository.CustomerRepository;
@@ -14,21 +15,19 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
-    private CustomerMapper customerMapper;
-
-    @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper) {
-        this.customerRepository = customerRepository;
-        this.customerMapper = customerMapper;
-    }
+    private final CustomerMapper customerMapper;
 
     @Override
     public List<Customer> findAll() {
-        return customerRepository.readAll().stream().map(customerMapper::toCustomer).collect(Collectors.toList());
+        return customerRepository.readAll()
+                .stream()
+                .map(customerMapper::toCustomer)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -36,8 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
         Long id = newCustomer.getId();
         if ((id == null) || !customerRepository.read(id).isPresent()){
             customerRepository.create(customerMapper.toCustomerDB(newCustomer));
-        }
-        else {
+        } else {
             customerRepository.update(customerMapper.toCustomerDB(newCustomer));
         }
         return newCustomer;

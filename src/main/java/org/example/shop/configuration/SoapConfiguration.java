@@ -14,8 +14,8 @@ import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
-@Configuration
-@EnableWs
+//@Configuration
+//@EnableWs
 public class SoapConfiguration extends WsConfigurerAdapter {
     @Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext)
@@ -23,7 +23,7 @@ public class SoapConfiguration extends WsConfigurerAdapter {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean(servlet, "/*");
+        return new ServletRegistrationBean(servlet, "/items/*");
     }
 
     @Bean(name = "ItemsWsdl")

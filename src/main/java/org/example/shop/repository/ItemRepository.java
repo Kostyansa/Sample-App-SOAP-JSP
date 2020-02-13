@@ -1,6 +1,7 @@
 package org.example.shop.repository;
 
 import org.example.shop.repository.dto.ItemDB;
+import org.springframework.cache.annotation.Cacheable;
 
 import javax.swing.text.html.Option;
 import java.util.List;
@@ -11,6 +12,8 @@ public interface ItemRepository {
     int create(ItemDB itemDB);
 
     Optional<ItemDB> read(Long id);
+
+    List<ItemDB> read(Long offset, Long limit);
 
     List<ItemDB> readByBundleId(Long id);
 

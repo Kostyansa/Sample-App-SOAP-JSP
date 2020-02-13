@@ -40,7 +40,7 @@ public class ItemRepositoryImpl implements ItemRepository {
     @Cacheable("items")
     @Override
     public Optional<ItemDB> read(Long id) {
-        try{
+        try {
             ItemDB itemDB = jdbcTemplate.queryForObject(
                     "select It.id, price, name, description, amount from shop.Item as It " +
                             "left join shop.ItemAvailability as ItAv on It.id = ItAv.id where It.id = ?",
@@ -49,10 +49,23 @@ public class ItemRepositoryImpl implements ItemRepository {
                     },
                     rowMapper);
             return Optional.ofNullable(itemDB);
-        }
-        catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    @Cacheable("items")
+    @Override
+    public List<ItemDB> read(Long limit, Long offset) {
+        return jdbcTemplate.query(
+                "select It.id, price, name, description, amount from shop.Item as It " +
+                        "left join shop.ItemAvailability as ItAv on It.id = ItAv.id " +
+                        "limit ? offset ?",
+                new Object[]{
+                        limit,
+                        offset
+                },
+                rowMapper);
     }
 
     @Cacheable("items")
@@ -63,14 +76,14 @@ public class ItemRepositoryImpl implements ItemRepository {
                         "left join shop.ItemAvailability as ItAv on It.id = ItAv.id " +
                         "left join shop.Bundle_Has_Item as Bun on It.id = Bun.id_Item " +
                         "where Bun.id_Bundle = ?",
-                    new Object[]{
-                            idBundle
-                    },
-                    rowMapper
-                );
+                new Object[]{
+                        idBundle
+                },
+                rowMapper
+        );
     }
 
-    @CacheEvict("customers")
+    @CacheEvict("items")
     @Override
     public int update(ItemDB itemDB) {
         return jdbcTemplate.update("update shop.Item set price = ?, name = ?, description = ? where id = ?",
@@ -87,7 +100,7 @@ public class ItemRepositoryImpl implements ItemRepository {
                 itemDB.getId());
     }
 
-    @CacheEvict("customers")
+    @CacheEvict("items")
     @Override
     public int delete(ItemDB itemDB) {
         return jdbcTemplate.update("delete from shop.Item where id = ?",

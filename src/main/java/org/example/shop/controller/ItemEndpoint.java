@@ -40,9 +40,8 @@ public class ItemEndpoint {
         try {
             response.setItem(
                     itemResourceMapper.toResource(
-                            itemService.find(request.getId()).get(3, TimeUnit.SECONDS)
-                            )
-                    );
+                            itemService.find(request.getId()).get(3, TimeUnit.SECONDS))
+            );
         } catch (InterruptedException e) {
             e.printStackTrace();
             Thread.currentThread().interrupt();

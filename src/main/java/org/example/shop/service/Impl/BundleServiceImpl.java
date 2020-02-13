@@ -37,7 +37,7 @@ public class BundleServiceImpl implements BundleService {
 
 
     @Override
-    public Bundle find(Long id){
+    public Bundle find(Long id) {
         CompletableFuture<Optional<BundleDB>> bundleDB = CompletableFuture.supplyAsync(
                 () -> bundleRepository.read(id)
         );
@@ -47,11 +47,10 @@ public class BundleServiceImpl implements BundleService {
                     bundleDB.get(3, TimeUnit.SECONDS)
                             .orElseThrow(ItemNotFoundException::new),
                     items.get()
-                    );
+            );
         } catch (InterruptedException | ExecutionException e) {
             throw new ItemNotFoundException("Internal Server Error");
-        }
-        catch (TimeoutException e){
+        } catch (TimeoutException e) {
             throw new ItemNotFoundException("Server is overloaded");
         }
     }

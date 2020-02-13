@@ -35,7 +35,7 @@ public class BundleRepositoryImpl implements BundleRepository {
     @Cacheable("bundles")
     @Override
     public Optional<BundleDB> read(Long id) {
-        try{
+        try {
             BundleDB bundleDB = jdbcTemplate.queryForObject(
                     "select id, price, name, description from shop.Bundle as Bun  where Bun.id = ?",
                     new Object[]{
@@ -43,8 +43,7 @@ public class BundleRepositoryImpl implements BundleRepository {
                     },
                     rowMapper);
             return Optional.ofNullable(bundleDB);
-        }
-        catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
     }
