@@ -11,6 +11,8 @@ public interface CustomerRepository {
 
     Optional<CustomerDB> read(Long id);
 
+    Optional<CustomerDB> readByLogin(String login);
+
     List<CustomerDB> readAll();
 
     int update(CustomerDB customerDB);
