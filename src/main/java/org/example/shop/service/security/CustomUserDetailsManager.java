@@ -1,4 +1,4 @@
-package org.example.shop.service.Impl;
+package org.example.shop.service.security;
 
 import lombok.RequiredArgsConstructor;
 import org.example.shop.repository.CustomerRepository;
