@@ -14,4 +14,6 @@ public interface ItemService {
     CompletableFuture<List<Item>> findByBundleId(Long id);
 
     List<Item> findItemsWithLimitOffset(Long limit, Long offset);
+
+    Long maxPage(Long limit);
 }

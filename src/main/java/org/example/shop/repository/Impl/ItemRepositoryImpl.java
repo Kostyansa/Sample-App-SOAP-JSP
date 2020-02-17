@@ -1,5 +1,6 @@
 package org.example.shop.repository.Impl;
 
+import lombok.RequiredArgsConstructor;
 import org.example.shop.repository.ItemRepository;
 import org.example.shop.repository.dto.ItemDB;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,22 +12,33 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
 public class ItemRepositoryImpl implements ItemRepository {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
-    private RowMapper<ItemDB> rowMapper = (rowStr, rowNum) -> new ItemDB(
-            rowStr.getLong("id"),
-            rowStr.getString("name"),
-            rowStr.getString("description"),
-            rowStr.getDouble("price"),
-            rowStr.getLong("amount")
-    );
+    private RowMapper<ItemDB> rowMapper = (rowStr, rowNum) -> {
+        Double price = 0.0;
+        try {
+           price = (Double) NumberFormat.getCurrencyInstance(Locale.US).parse(rowStr.getString("price"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return new ItemDB(
+                rowStr.getLong("id"),
+                rowStr.getString("name"),
+                rowStr.getString("description"),
+                price,
+                rowStr.getLong("amount")
+        );
+    };
 
 
     @Override
@@ -105,5 +117,12 @@ public class ItemRepositoryImpl implements ItemRepository {
     public int delete(ItemDB itemDB) {
         return jdbcTemplate.update("delete from shop.Item where id = ?",
                 itemDB.getId());
+    }
+
+
+    @Override
+    public Long maxPage(Long limit){
+        long pages = jdbcTemplate.queryForObject("Select count(id) from shop.item", Long.class);
+        return pages / limit + (long) Math.signum(pages % limit);
     }
 }
