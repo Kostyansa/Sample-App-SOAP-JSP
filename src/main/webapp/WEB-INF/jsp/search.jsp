@@ -5,8 +5,29 @@
 
 <html lang="en">
 
-<body>
+    <head>
+        <title>Search</title>
+        <link href="../CSS/main.css" rel="stylesheet" type="text/css"><meta charset="utf-8"/>
+     </head>
 
+<body>
+    <section class="search section-class">
+        <table class="item-table">
+            <c:forEach var="item" items="${items}">
+                <tr>
+                    <td>"${item.name}"</td>
+                    <td>"${item.description}"</td>
+                    <td>"${item.price}"</td>
+                </tr>
+            </c:forEach>
+        </table>
+        <div>
+            .
+            <c:forEach var="page" items="${pages}">
+                ${page}.
+            </c:forEach>
+        </div>
+    </section>
 </body>
 
 </html>
