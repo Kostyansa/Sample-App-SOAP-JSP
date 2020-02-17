@@ -37,17 +37,11 @@ public class ItemEndpoint {
     public ItemResponse getStudent(@RequestPayload ItemRequest request) {
 
         ItemResponse response = new ItemResponse();
-        try {
-            response.setItem(
-                    itemResourceMapper.toResource(
-                            itemService.find(request.getId()).get(3, TimeUnit.SECONDS))
-            );
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            Thread.currentThread().interrupt();
-        } catch (ExecutionException | TimeoutException e) {
-            throw new ItemNotFoundException();
-        }
+        response.setItem(
+                itemResourceMapper.toResource(
+                        itemService.find(request.getId()))
+        );
+
         return response;
     }
 }

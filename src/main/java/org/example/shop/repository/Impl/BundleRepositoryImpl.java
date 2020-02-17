@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -46,6 +47,17 @@ public class BundleRepositoryImpl implements BundleRepository {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    @Cacheable("bundles")
+    @Override
+    public List<BundleDB> read(Long limit, Long offset) {
+        return jdbcTemplate.query(
+                "select id, price, name, description from shop.Bundle as Bun limit ? offset ?",
+                new Object[]{
+                        limit, offset
+                },
+                rowMapper);
     }
 
     @Cacheable("bundles")
