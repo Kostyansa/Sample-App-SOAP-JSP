@@ -56,4 +56,11 @@ public class ItemServiceImpl implements ItemService {
     public Long maxPage(Long limit){
         return itemRepository.maxPage(limit);
     }
+
+    @Override
+    public List<Item> findItemsWithLimitOffset(Long limit, Long offset, String name) {
+        return itemRepository.read(limit, offset, name).stream()
+                .map(itemMapper::toItem)
+                .collect(Collectors.toList());
+    }
 }

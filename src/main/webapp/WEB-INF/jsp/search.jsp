@@ -11,6 +11,10 @@
      </head>
 
 <body>
+    <form action="/search?p=1&l=10" method="POST">
+        <input type="text" id="name" name="name">
+        <input type="submit" value="Submit">
+    </form>
     <section class="search section-class">
         <table class="item-table">
             <c:forEach var="item" items="${items}">

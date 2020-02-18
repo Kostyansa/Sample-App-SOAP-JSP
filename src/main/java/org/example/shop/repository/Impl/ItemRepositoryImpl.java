@@ -125,4 +125,22 @@ public class ItemRepositoryImpl implements ItemRepository {
         long pages = jdbcTemplate.queryForObject("Select count(id) from shop.item", Long.class);
         return pages / limit + (long) Math.signum(pages % limit);
     }
+
+    @Override
+    @Cacheable("items")
+    public List<ItemDB> read(Long limit, Long offset, String name) {
+        return jdbcTemplate.query(
+                "select It.id, price, name, description, amount from shop.Item as It " +
+                        "left join shop.ItemAvailability as ItAv on It.id = ItAv.id " +
+                        "where It.id in (Select BunIt.id from shop.bundle " +
+                        "inner join shop.Bundle_Has_Item as BunIt on Bun.id = BunIt.id_Bundle " +
+                        "where Bun.name = ?) as temp " +
+                        "limit ? offset ?",
+                new Object[]{
+                        name,
+                        limit,
+                        offset
+                },
+                rowMapper);
+    }
 }

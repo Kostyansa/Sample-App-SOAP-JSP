@@ -16,4 +16,6 @@ public interface ItemService {
     List<Item> findItemsWithLimitOffset(Long limit, Long offset);
 
     Long maxPage(Long limit);
+
+    List<Item> findItemsWithLimitOffset(Long limit, Long offset, String name);
 }

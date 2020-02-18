@@ -4,6 +4,7 @@ import org.example.shop.repository.dto.ItemDB;
 import org.springframework.cache.annotation.Cacheable;
 
 import javax.swing.text.html.Option;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,4 +25,6 @@ public interface ItemRepository {
     int delete(ItemDB itemDB);
 
     Long maxPage(Long limit);
+
+    List<ItemDB> read(Long limit, Long offset, String name);
 }
