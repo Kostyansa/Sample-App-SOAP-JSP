@@ -22,4 +22,6 @@ public interface ItemRepository {
     int updateAvailability(ItemDB itemDB);
 
     int delete(ItemDB itemDB);
+
+    Long maxPage(Long limit);
 }

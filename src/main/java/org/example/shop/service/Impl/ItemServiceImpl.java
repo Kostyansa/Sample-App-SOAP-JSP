@@ -51,4 +51,9 @@ public class ItemServiceImpl implements ItemService {
                 .map(itemMapper::toItem)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Long maxPage(Long limit){
+        return itemRepository.maxPage(limit);
+    }
 }

@@ -1,23 +1,33 @@
-<html>
-    <head>
-        <title>Work</title>
-        <link href="../CSS/work.css" rel="stylesheet" type="text/css"><meta charset="utf-8"/>
-    </head>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 
-    <body>
-        <section class="search">
-            <form class="search-form">
-            </form>
-        </section>
-        <section class="content-section">
-            <table class="item-table">
+
+<html lang="en">
+
+    <head>
+        <title>Search</title>
+        <link href="../CSS/main.css" rel="stylesheet" type="text/css"><meta charset="utf-8"/>
+     </head>
+
+<body>
+    <section class="search section-class">
+        <table class="item-table">
+            <c:forEach var="item" items="${items}">
                 <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Amount</th>
+                    <td>"${item.name}"</td>
+                    <td>"${item.description}"</td>
+                    <td>"${item.price}"</td>
                 </tr>
-            </table>
-        </section>
-    </body>
+            </c:forEach>
+        </table>
+        <div>
+            .
+            <c:forEach var="page" items="${pages}">
+                ${page}.
+            </c:forEach>
+        </div>
+    </section>
+</body>
+
 </html>

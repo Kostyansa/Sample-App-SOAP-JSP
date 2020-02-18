@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -55,4 +56,27 @@ public class BundleServiceImpl implements BundleService {
         }
     }
 
+    @Override
+    public List<Bundle> find(Long limit, Long offset) {
+
+        CompletableFuture<List<BundleDB>> bundlesDB = CompletableFuture.supplyAsync(
+                () -> bundleRepository.read(limit, offset)
+        );
+        List<Bundle> bundles = new ArrayList<>();
+        try {
+            //Did not use stream because exceptions in Lambdas
+            for (BundleDB bundleDB : bundlesDB.get()) {
+                CompletableFuture<List<Item>> items = itemService.findByBundleId(bundleDB.getId());
+                bundles.add(bundleMapper.toBundle(
+                        bundleDB,
+                        items.get(3, TimeUnit.SECONDS)
+                ));
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            throw new ItemNotFoundException("Internal Server Error");
+        } catch (TimeoutException e) {
+            throw new ItemNotFoundException("Server is overloaded");
+        }
+        return bundles;
+    }
 }
