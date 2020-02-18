@@ -27,13 +27,10 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    @Async
-    public CompletableFuture<Item> find(Long id) {
-        return CompletableFuture.supplyAsync(
-                () -> itemMapper.toItem(
+    public Item find(Long id) {
+        return itemMapper.toItem(
                         itemRepository.read(id)
                                 .orElseThrow(ItemNotFoundException::new)
-                )
         );
     }
 
@@ -46,5 +43,24 @@ public class ItemServiceImpl implements ItemService {
                         .map(itemMapper::toItem)
                         .collect(Collectors.toList())
                 );
+    }
+
+    @Override
+    public List<Item> findItemsWithLimitOffset(Long limit, Long offset){
+        return itemRepository.read(limit, offset).stream()
+                .map(itemMapper::toItem)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Long maxPage(Long limit){
+        return itemRepository.maxPage(limit);
+    }
+
+    @Override
+    public List<Item> findItemsWithLimitOffset(Long limit, Long offset, String name) {
+        return itemRepository.read(limit, offset, name).stream()
+                .map(itemMapper::toItem)
+                .collect(Collectors.toList());
     }
 }

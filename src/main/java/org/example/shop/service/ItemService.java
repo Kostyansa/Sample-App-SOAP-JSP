@@ -8,8 +8,14 @@ import java.util.concurrent.CompletableFuture;
 
 public interface ItemService {
 
-    CompletableFuture<Item> find(Long id);
+    Item find(Long id);
 
     @Async
     CompletableFuture<List<Item>> findByBundleId(Long id);
+
+    List<Item> findItemsWithLimitOffset(Long limit, Long offset);
+
+    Long maxPage(Long limit);
+
+    List<Item> findItemsWithLimitOffset(Long limit, Long offset, String name);
 }
